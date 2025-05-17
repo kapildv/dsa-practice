@@ -29,7 +29,7 @@ public class ClimbingStairs {
      */
 
     public static void main(String[] args) {
-        System.out.println(climbStairs(1));
+        System.out.println(climbStairs(6));
     }
 
     public static int climbStairs(int n) {
@@ -44,7 +44,9 @@ public class ClimbingStairs {
             return 1;
         }
 
-        int ans = solve(n-1, dp) + solve(n-2, dp);
+//        int ans = solve(n-1, dp) + solve(n-2, dp);
+
+        int ans = solveUsingTabulation(n);
 
         return ans;
     }
@@ -67,6 +69,21 @@ public class ClimbingStairs {
 
         return dp[size];
 
+    }
+
+    public static int solveUsingTabulation(int n){
+        //Step 1 : Creation of dp[]
+        int dp[] = new int[n+1];
+
+        //Step 2 : Base case intialization
+        dp[0] = 1;
+        dp[1] = 1;
+
+        //Step 3 : Calculate the remaining cases
+        for (int i = 2; i <= n; i++) {
+            dp[i] = dp[i-1] + dp[i-2];
+        }
+        return dp[n];
     }
 
 
